@@ -1,11 +1,5 @@
 # 자바 ORM 표준 JPA 프로그래밍 정리
 
-상태: Done
-repository: https://github.com/ju-learning/ORM-JPA-Basic
-평: ⭐️⭐️⭐️⭐️⭐️
-updated_at: 2023년 8월 1일 오전 11:23
-created_at: 2023년 1월 27일 오후 3:46
-
 이 글은 내용을 정리하고 개인적인 사견을 첨가한 2차 창작물이며, 강의 및 강의자료(코드 등)에 대한 저작권은 [원본](https://www.inflearn.com/course/ORM-JPA-Basic#) 및 원작자에게 있고 공유하지 않는다.
 
 # 🗂 강의 자료
@@ -140,7 +134,7 @@ public class JpaMain {
 - JPA 에서 매핑과 영속성컨텍스트가 매우 중요
 - 엔티티에는 생명 주기가 있음
 
-![](%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%20ORM%20%E1%84%91%E1%85%AD%E1%84%8C%E1%85%AE%E1%86%AB%20JPA%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20ef6676ef28854c01ae5b41811621525c/Untitled.png)
+![](images/Untitled.png)
 
 - 플러시는 영속성컨텍스트를 비우지않음 (그냥 동기화임)
 - 트랜잭션이라는 작업 단위가 매우 중요
@@ -263,7 +257,7 @@ public void changeTeam(Team team) {
 
 ### 일대다 [1:N]
 
-![Untitled](%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%20ORM%20%E1%84%91%E1%85%AD%E1%84%8C%E1%85%AE%E1%86%AB%20JPA%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20ef6676ef28854c01ae5b41811621525c/Untitled%201.png)
+![Untitled](images/Untitled%201.png)
 
 - 여기선 1쪽에서 외래키를 관리 (강사님은 권장하지 않는 모델임, 스펙상 스프링이 지원만 할 뿐 실무에서 지양함)
 - `@OneToMany` 를 사용한 `List<Mamber> members` 한곳에 `@JoinColumn( .. )` 을 선언해주면 실제로 사용 가능
@@ -277,7 +271,7 @@ public void changeTeam(Team team) {
 
 ### 일대일 [1:1]
 
-![Untitled](%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%20ORM%20%E1%84%91%E1%85%AD%E1%84%8C%E1%85%AE%E1%86%AB%20JPA%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20ef6676ef28854c01ae5b41811621525c/Untitled%202.png)
+![Untitled](images/Untitled%202.png)
 
 - 일대일은 대칭관계이기때문에, 주테이블이나 대상테이블에 아무곳에나 외래키 선택이 가능
 - 외래키 데이터베이스에 유니크제약조건을 추가해주는게 좋다
@@ -304,7 +298,7 @@ public void changeTeam(Team team) {
 
 ### 실전 예제 3 - 다양한 연관관계 매핑
 
-![Untitled](%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%20ORM%20%E1%84%91%E1%85%AD%E1%84%8C%E1%85%AE%E1%86%AB%20JPA%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20ef6676ef28854c01ae5b41811621525c/Untitled%203.png)
+![Untitled](images/Untitled%203.png)
 
 - (1:1 관계와 N:N 관계를 추가하고 Entity 를 설계하는거 실습) `@ManyToMany` 지양하라고 했지만 보여줄려고 그냥 사용함
 - (`@JoinColumn` `@ManyToOne` 등의 옵션들 한번 찾아볼 것)
