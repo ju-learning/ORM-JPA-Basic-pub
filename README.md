@@ -1,8 +1,16 @@
+# 자바 ORM 표준 JPA 프로그래밍 정리
+
+상태: Done
+repository: https://github.com/ju-learning/ORM-JPA-Basic
+평: ⭐️⭐️⭐️⭐️⭐️
+updated_at: 2023년 8월 1일 오전 11:23
+created_at: 2023년 1월 27일 오후 3:46
+
 이 글은 내용을 정리하고 개인적인 사견을 첨가한 2차 창작물이며, 강의 및 강의자료(코드 등)에 대한 저작권은 [원본](https://www.inflearn.com/course/ORM-JPA-Basic#) 및 원작자에게 있고 공유하지 않는다.
 
 # 🗂 강의 자료
 
-[수업 자료](https://www.notion.so/273dbd3e3d7e427bb075eb4bcd2ea344)
+[수업 자료](https://www.notion.so/273dbd3e3d7e427bb075eb4bcd2ea344?pvs=21)
 
 # 🌈 강의 환경
 
@@ -132,7 +140,7 @@ public class JpaMain {
 - JPA 에서 매핑과 영속성컨텍스트가 매우 중요
 - 엔티티에는 생명 주기가 있음
 
-![https://s3.us-west-2.amazonaws.com/secure.notion-static.com/0aed5f68-1cb7-4253-bad8-304669fb5f41/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230127%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230127T090454Z&X-Amz-Expires=86400&X-Amz-Signature=1584ee1cb85ebea94a9011966daf88132e568b6110674c6bca2cb003011d3102&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/0aed5f68-1cb7-4253-bad8-304669fb5f41/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230127%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230127T090454Z&X-Amz-Expires=86400&X-Amz-Signature=1584ee1cb85ebea94a9011966daf88132e568b6110674c6bca2cb003011d3102&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
+![](%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%20ORM%20%E1%84%91%E1%85%AD%E1%84%8C%E1%85%AE%E1%86%AB%20JPA%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20ef6676ef28854c01ae5b41811621525c/Untitled.png)
 
 - 플러시는 영속성컨텍스트를 비우지않음 (그냥 동기화임)
 - 트랜잭션이라는 작업 단위가 매우 중요
@@ -192,7 +200,7 @@ public class JpaMain {
     - 테이블은 외래키로 조인 vs 객체는 참조를 사용 → 모델링의 협력 관계를 만들 수 없음
 - 단방향 연관관계는 `@ManyToOne` 과 `@JoinColumn` 을 사용하여 간단하게 가능
 
-### 방향 연관관계와 연관관계의 주인 1- 기본
+### 양방향 연관관계와 연관관계의 주인 1- 기본
 
 - (JPA 계의 포인터;;) 영속성컨텍스트의 메커니즘과 양방향연관관계와 연관관계 주인이 제일 어려움
 - 테이블의 연관관계는 사실상 Foreign Key 하나만 가지고 양방향을 다 다룰 수 있음 but 객체는 아님
@@ -220,13 +228,6 @@ public class JpaMain {
 public void changeTeam(Team team) {
 	this.team = team;
 	team.getMembers().add(this);
-}
-```
-
-```java
-public void addMemeber(Member member) {
-	member.setTeam = team; // setter 필요 
-	this.memberList.add(this);
 }
 ```
 
@@ -262,7 +263,7 @@ public void addMemeber(Member member) {
 
 ### 일대다 [1:N]
 
-![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5859b315-f6b4-45df-8073-9f247df06d95/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230131%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230131T131925Z&X-Amz-Expires=86400&X-Amz-Signature=0ec2503d76e531091e34c471db51b27b4ece34bb8515454101a431e16141d42d&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
+![Untitled](%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%20ORM%20%E1%84%91%E1%85%AD%E1%84%8C%E1%85%AE%E1%86%AB%20JPA%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20ef6676ef28854c01ae5b41811621525c/Untitled%201.png)
 
 - 여기선 1쪽에서 외래키를 관리 (강사님은 권장하지 않는 모델임, 스펙상 스프링이 지원만 할 뿐 실무에서 지양함)
 - `@OneToMany` 를 사용한 `List<Mamber> members` 한곳에 `@JoinColumn( .. )` 을 선언해주면 실제로 사용 가능
@@ -276,7 +277,7 @@ public void addMemeber(Member member) {
 
 ### 일대일 [1:1]
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/80d91aa4-23b1-4203-bab4-ef3c829a42c4/Untitled.png)
+![Untitled](%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%20ORM%20%E1%84%91%E1%85%AD%E1%84%8C%E1%85%AE%E1%86%AB%20JPA%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20ef6676ef28854c01ae5b41811621525c/Untitled%202.png)
 
 - 일대일은 대칭관계이기때문에, 주테이블이나 대상테이블에 아무곳에나 외래키 선택이 가능
 - 외래키 데이터베이스에 유니크제약조건을 추가해주는게 좋다
@@ -303,7 +304,7 @@ public void addMemeber(Member member) {
 
 ### 실전 예제 3 - 다양한 연관관계 매핑
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/22bf2a4a-6254-4170-a451-b060d1b66315/Untitled.png)
+![Untitled](%E1%84%8C%E1%85%A1%E1%84%87%E1%85%A1%20ORM%20%E1%84%91%E1%85%AD%E1%84%8C%E1%85%AE%E1%86%AB%20JPA%20%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%85%E1%85%A2%E1%84%86%E1%85%B5%E1%86%BC%20%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5%20ef6676ef28854c01ae5b41811621525c/Untitled%203.png)
 
 - (1:1 관계와 N:N 관계를 추가하고 Entity 를 설계하는거 실습) `@ManyToMany` 지양하라고 했지만 보여줄려고 그냥 사용함
 - (`@JoinColumn` `@ManyToOne` 등의 옵션들 한번 찾아볼 것)
